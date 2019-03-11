@@ -76,7 +76,11 @@
         <!--PageVC-->
         <scene sceneID="nSs-mh-XTI">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3EJ-YN-5UA" customClass="PageVC" customModule="WeatherGift" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3EJ-YN-5UA" customClass="PageVC" customModule="WeatherGift" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="tdB-xO-5p1" kind="presentation" identifier="ToListVC" id="3kA-EV-mGg"/>
+                    </connections>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLF-O0-sO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="129" y="-579"/>
@@ -100,6 +104,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aeu-6V-YdM" kind="unwind" identifier="ToPageVC" unwindAction="unwindFromListVCWithSender:" id="pgZ-JT-Sbc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -123,8 +130,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bIw-7p-eZL"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="2X4-DB-ykg" id="vY4-eY-U4k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Faf-24-cUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aeu-6V-YdM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1058" y="-579"/>
         </scene>

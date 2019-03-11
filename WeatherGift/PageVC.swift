@@ -58,10 +58,23 @@ class PageVC: UIPageViewController {
     }
     
     @objc func segueToLocationsVC(){
-        print("clicked")
+        performSegue(withIdentifier: "ToListVC", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToListVC" {
+            let destination = segue.destination as! ListVC
+            destination.locationsArray = locationsArray
+            destination.currentPage = currentPage
+            
+        }
+    }
     
+    @IBAction func unwindFromListVC(sender: UIStoryboardSegue){
+        pageControl.numberOfPages = locationsArray.count
+        pageControl.currentPage = currentPage
+        setViewControllers([createDetailVC(forPage: currentPage)], direction: .forward, animated: false, completion: nil)
+    }
     
     func createDetailVC(forPage page: Int) -> DetailVC {
         
