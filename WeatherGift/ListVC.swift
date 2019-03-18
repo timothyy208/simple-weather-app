@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class ListVC: UIViewController {
     
@@ -46,6 +47,12 @@ class ListVC: UIViewController {
         }
     }
     
+    @IBAction func addBarButtonPressed(_ sender: UIBarButtonItem) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+        
+    }
     
 }
 
@@ -99,4 +106,41 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
 //        }
         return (proposedDestinationIndexPath.row == 0 ? sourceIndexPath : proposedDestinationIndexPath)
     }
+    
+    func updateTable(place: GMSPlace) {
+        let newIndexPath = IndexPath(row: locationsArray.count, section: 0)
+        locationsArray.append(place.name!)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        
+    }
+}
+
+extension ListVC: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        dismiss(animated: true, completion: nil)
+        updateTable(place: place)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }
