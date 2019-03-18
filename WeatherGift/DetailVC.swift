@@ -25,14 +25,18 @@ class DetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        locationLabel.text = locationsArray[currentPage].name
-        dateLabel.text = locationsArray[currentPage].coordinates
+        updateUserInterface()
     } 
     
     override func viewDidAppear(_ animated: Bool) {
         if currentPage == 0 {
             getLocation()
         }
+    }
+    
+    func updateUserInterface() {
+        locationLabel.text = locationsArray[currentPage].name
+        dateLabel.text = locationsArray[currentPage].coordinates
     }
 
 }
@@ -63,12 +67,27 @@ extension DetailVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let geoCoder = CLGeocoder()
+        var place = " "
         currentLocation = locations.last
         let lat = currentLocation.coordinate.latitude
         let lon = currentLocation.coordinate.longitude
         let currCoord = "\(lat),\(lon)"
         print(currCoord)
         dateLabel.text = currCoord
+        geoCoder.reverseGeocodeLocation(currentLocation, completionHandler: {
+            placemarks, error in
+            if placemarks != nil {
+                let placemark = placemarks!.last
+                place = (placemark?.name)!
+            } else {
+                print("error retrieving place")
+                place = "Unknown Weather Location"
+            }
+            self.locationsArray[0].name = place
+            self.locationsArray[0].coordinates = currCoord
+            self.updateUserInterface()
+        })
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
