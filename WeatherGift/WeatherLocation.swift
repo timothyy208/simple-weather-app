@@ -15,6 +15,7 @@ class WeatherLocation {
     var coordinates = ""
     var temperature = "--"
     var summary = ""
+    var icon = ""
     
     
     func getWeather(completed: @escaping () -> ()){
@@ -31,10 +32,17 @@ class WeatherLocation {
                 } else {
                     print("Didnt get temp")
                 }
+                
                 if let jsonSummary = json["daily"]["summary"].string {
                     self.summary = jsonSummary
                 } else {
                     print("didnt get summary")
+                }
+                
+                if let jsonIcon = json["daily"]["icon"].string {
+                    self.icon = jsonIcon
+                } else {
+                    print("didnt get icon")
                 }
             case .failure(let error):
                 print(error)

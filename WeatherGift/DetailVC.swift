@@ -44,6 +44,7 @@ class DetailVC: UIViewController {
         dateLabel.text = locationsArray[currentPage].coordinates
         temperatureLabel.text = locationsArray[currentPage].temperature
         summaryLabel.text = locationsArray[currentPage].summary
+        currentImage.image = UIImage(named: locationsArray[currentPage].icon)
     }
 
 }
