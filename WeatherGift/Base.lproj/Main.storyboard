@@ -58,8 +58,68 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="soG-km-tgp">
+                                <rect key="frame" x="0.0" y="277" width="414" height="541"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayWeatherCell" rowHeight="80" id="yfg-oq-02m" customClass="DayWeatherCell" customModule="WeatherGift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yfg-oq-02m" id="SnB-UK-eYS">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thunderstorm" translatesAutoresizingMaskIntoConstraints="NO" id="K6T-3a-nZW">
+                                                    <rect key="frame" x="8" y="5" width="70" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtF-ng-cSp">
+                                                    <rect key="frame" x="86" y="4" width="214" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-45°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5m9-Pn-Fuu">
+                                                    <rect key="frame" x="315" y="4" width="50" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-80°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xL4-A1-ano">
+                                                    <rect key="frame" x="315" y="31" width="50" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="big yikes" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-sU-9Yt">
+                                                    <rect key="frame" x="86" y="22" width="242" height="63"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dayCellIcon" destination="K6T-3a-nZW" id="bc4-Qc-XQH"/>
+                                            <outlet property="dayCellMaxTemp" destination="5m9-Pn-Fuu" id="cHN-Yj-Ddc"/>
+                                            <outlet property="dayCellMinTemp" destination="xL4-A1-ano" id="rol-MR-QZS"/>
+                                            <outlet property="dayCellSummary" destination="hoj-sU-9Yt" id="CnH-Ol-WRj"/>
+                                            <outlet property="dayCellWeekday" destination="FtF-ng-cSp" id="eqg-3x-iVt"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="soG-km-tgp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C1c-Ax-Ssl"/>
+                            <constraint firstItem="soG-km-tgp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GXz-Sj-ZyG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="soG-km-tgp" secondAttribute="bottom" constant="44" id="Lee-ko-0X7"/>
+                            <constraint firstItem="soG-km-tgp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="233" id="aaL-ba-k9A"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -67,6 +127,7 @@
                         <outlet property="dateLabel" destination="ylC-8W-nV4" id="J2g-Ph-Wg9"/>
                         <outlet property="locationLabel" destination="c34-ua-8MU" id="x6Q-J4-Xcf"/>
                         <outlet property="summaryLabel" destination="LnQ-tc-LJ2" id="Tk3-xS-E1Z"/>
+                        <outlet property="tableView" destination="soG-km-tgp" id="Mr8-nb-Rtu"/>
                         <outlet property="temperatureLabel" destination="U7C-Co-M6a" id="U20-oE-dhs"/>
                     </connections>
                 </viewController>
@@ -151,4 +212,7 @@
             <point key="canvasLocation" x="1058" y="-579"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="thunderstorm" width="169" height="127"/>
+    </resources>
 </document>
