@@ -116,7 +116,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         let latitude = place.coordinate.latitude
         let longitude = place.coordinate.longitude
         newLocation.coordinates = "\(latitude),\(longitude)"
-        print(newLocation.coordinates)
+        //print(newLocation.coordinates)
         locationsArray.append(newLocation)
         tableView.insertRows(at: [newIndexPath], with: .automatic)
         
@@ -127,7 +127,7 @@ extension ListVC: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name!)")
+        //print("Place name: \(place.name!)")
         dismiss(animated: true, completion: nil)
         updateTable(place: place)
     }

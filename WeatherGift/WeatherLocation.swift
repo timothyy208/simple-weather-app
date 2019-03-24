@@ -32,7 +32,7 @@ class WeatherLocation {
     
     func getWeather(completed: @escaping () -> ()){
         let weatherURL = urlBase + apiKey + coordinates
-        print(weatherURL)
+        //print(weatherURL)
         Alamofire.request(weatherURL).responseJSON {response in
             switch response.result {
             case .success(let value):
@@ -40,7 +40,7 @@ class WeatherLocation {
                 if let jsonTemperature = json["currently"]["temperature"].double {
                     let roundedTemp = String(format: "%3.f", jsonTemperature)
                     self.temperature = roundedTemp + "°"
-                    print(roundedTemp)
+                    //print(roundedTemp)
                 } else {
                     print("Didnt get temp")
                 }
