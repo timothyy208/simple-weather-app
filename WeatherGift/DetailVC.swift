@@ -50,6 +50,7 @@ class DetailVC: UIViewController {
         temperatureLabel.text = location.temperature
         summaryLabel.text = location.summary
         currentImage.image = UIImage(named: location.icon)
+        tableView.reloadData()
     }
     
     func formatTimeForTimeZone(unixDate: TimeInterval, timeZone: String) -> String{
@@ -121,10 +122,13 @@ extension DetailVC: CLLocationManagerDelegate {
 
 extension DetailVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return locationsArray[currentPage].dailyForecastArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath) as! DayWeatherCell
+        let dailyForecast = locationsArray[currentPage].dailyForecastArray[indexPath.row]
+        let timeZone = locationsArray[currentPage].timeZone
+        cell.update(with: dailyForecast, timeZone: timeZone)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
