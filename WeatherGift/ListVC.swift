@@ -111,7 +111,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func updateTable(place: GMSPlace) {
         let newIndexPath = IndexPath(row: locationsArray.count, section: 0)
-        var newLocation = WeatherLocation()
+        let newLocation = WeatherLocation()
         newLocation.name = place.name!
         let latitude = place.coordinate.latitude
         let longitude = place.coordinate.longitude

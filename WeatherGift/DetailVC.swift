@@ -40,11 +40,23 @@ class DetailVC: UIViewController {
     }
     
     func updateUserInterface() {
-        locationLabel.text = locationsArray[currentPage].name
-        dateLabel.text = locationsArray[currentPage].coordinates
-        temperatureLabel.text = locationsArray[currentPage].temperature
-        summaryLabel.text = locationsArray[currentPage].summary
-        currentImage.image = UIImage(named: locationsArray[currentPage].icon)
+        let location = locationsArray[currentPage]
+        locationLabel.text = location.name
+        let dateString = formatTimeForTimeZone(unixDate: location.currentTime, timeZone: location.timeZone)
+        dateLabel.text = dateString
+        temperatureLabel.text = location.temperature
+        summaryLabel.text = location.summary
+        currentImage.image = UIImage(named: location.icon)
+    }
+    
+    func formatTimeForTimeZone(unixDate: TimeInterval, timeZone: String) -> String{
+        let usableDate = Date(timeIntervalSince1970: unixDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM dd, y"
+        
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)
+        let dateString = dateFormatter.string(from: usableDate)
+        return dateString
     }
 
 }
@@ -81,7 +93,7 @@ extension DetailVC: CLLocationManagerDelegate {
         let lon = currentLocation.coordinate.longitude
         let currCoord = "\(lat),\(lon)"
         print(currCoord)
-        dateLabel.text = currCoord
+        //dateLabel.text = currCoord
         geoCoder.reverseGeocodeLocation(currentLocation, completionHandler: {
             placemarks, error in
             if placemarks != nil {
@@ -94,7 +106,7 @@ extension DetailVC: CLLocationManagerDelegate {
             self.locationsArray[0].name = place
             self.locationsArray[0].coordinates = currCoord
             self.locationsArray[0].getWeather() {
-                self.updateUserInterface()
+            self.updateUserInterface()
             }
         })
     }

@@ -16,6 +16,8 @@ class WeatherLocation {
     var temperature = "--"
     var summary = ""
     var icon = ""
+    var currentTime = 0.0
+    var timeZone = ""
     
     
     func getWeather(completed: @escaping () -> ()){
@@ -43,6 +45,20 @@ class WeatherLocation {
                     self.icon = jsonIcon
                 } else {
                     print("didnt get icon")
+                }
+                
+                if let timeZone = json["timezone"].string {
+                    //print("timezone for \(self.name) is \(timeZone)")
+                    self.timeZone = timeZone
+                } else {
+                    print("didnt get timezone")
+                }
+                
+                if let time = json["currently"]["time"].double{
+                    self.currentTime = time
+                    //print("time for \(self.name) is \(time)")
+                } else {
+                    print("didnt get time")
                 }
             case .failure(let error):
                 print(error)
