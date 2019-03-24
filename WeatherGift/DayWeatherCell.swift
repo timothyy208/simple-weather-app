@@ -21,6 +21,7 @@ class DayWeatherCell: UITableViewCell {
     @IBOutlet weak var dayCellMinTemp: UILabel!
     @IBOutlet weak var dayCellSummary: UITextView!
     
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -28,7 +29,7 @@ class DayWeatherCell: UITableViewCell {
     
     func update(with dailyForecast: WeatherLocation.DailyForecast, timeZone: String) {
         dayCellIcon.image = UIImage(named: dailyForecast.dailyIcon)
-        //dayCellSummary.text = dailyForecast.dailySummary
+        dayCellSummary.text = dailyForecast.dailySummary
         dayCellMaxTemp.text = String(format: "%2.f",dailyForecast.dailyMaxTemp) + "°"
         dayCellMinTemp.text = String(format: "%2.f",dailyForecast.dailyMinTemp) + "°"
         

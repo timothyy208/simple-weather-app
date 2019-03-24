@@ -56,10 +56,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="soG-km-tgp">
-                                <rect key="frame" x="0.0" y="347" width="414" height="541"/>
+                                <rect key="frame" x="0.0" y="347" width="414" height="465"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayWeatherCell" rowHeight="80" id="yfg-oq-02m" customClass="DayWeatherCell" customModule="WeatherGift" customModuleProvider="target">
@@ -94,7 +94,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="big yikes" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-sU-9Yt">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Sunny weather thorughout the day, not too hot not too cold." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-sU-9Yt">
                                                     <rect key="frame" x="86" y="22" width="242" height="63"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -106,6 +106,7 @@
                                             <outlet property="dayCellIcon" destination="K6T-3a-nZW" id="bc4-Qc-XQH"/>
                                             <outlet property="dayCellMaxTemp" destination="5m9-Pn-Fuu" id="cHN-Yj-Ddc"/>
                                             <outlet property="dayCellMinTemp" destination="xL4-A1-ano" id="rol-MR-QZS"/>
+                                            <outlet property="dayCellSummary" destination="hoj-sU-9Yt" id="zHO-sW-f4O"/>
                                             <outlet property="dayCellWeekday" destination="FtF-ng-cSp" id="eqg-3x-iVt"/>
                                         </connections>
                                     </tableViewCell>
@@ -124,7 +125,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hourlyCell" id="PsR-75-l8P">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hourlyCell" id="PsR-75-l8P" customClass="HourlyWeatherCell" customModule="WeatherGift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -162,6 +163,13 @@
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="hourlyIcon" destination="0aj-cE-5sz" id="Unj-cP-OPB"/>
+                                            <outlet property="hourlyPrecipProb" destination="udy-ml-qa1" id="tLH-Ox-iua"/>
+                                            <outlet property="hourlyTemp" destination="Bc8-Ze-U5I" id="rbr-F3-7wa"/>
+                                            <outlet property="hourlyTime" destination="nDn-F4-CjR" id="fVJ-cI-Tg4"/>
+                                            <outlet property="rainDropImage" destination="kb6-vR-OdA" id="rxr-rb-Sq6"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -172,7 +180,7 @@
                             <constraint firstItem="soG-km-tgp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GXz-Sj-ZyG"/>
                             <constraint firstItem="HXw-aZ-aLP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jh6-5y-Dh0"/>
                             <constraint firstItem="HXw-aZ-aLP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="236" id="Jr3-f2-cBY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="soG-km-tgp" secondAttribute="bottom" constant="-26" id="Lee-ko-0X7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="soG-km-tgp" secondAttribute="bottom" constant="50" id="Lee-ko-0X7"/>
                             <constraint firstItem="soG-km-tgp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="303" id="aaL-ba-k9A"/>
                             <constraint firstItem="HXw-aZ-aLP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ukV-hE-WMB"/>
                         </constraints>

@@ -61,6 +61,7 @@ class DetailVC: UIViewController {
         summaryLabel.text = location.summary
         currentImage.image = UIImage(named: location.icon)
         tableView.reloadData()
+        collectionView.reloadData()
     }
     
 //    func formatTimeForTimeZone(unixDate: TimeInterval, timeZone: String) -> String{
@@ -146,11 +147,14 @@ extension DetailVC: UITableViewDataSource, UITableViewDelegate {
 extension DetailVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 24
+        return locationsArray[currentPage].hourlyForecastArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let hourlyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyCell", for: indexPath)
+        let hourlyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyCell", for: indexPath) as! HourlyWeatherCell
+        let hourlyForecast = locationsArray[currentPage].hourlyForecastArray[indexPath.row]
+        let timeZone = locationsArray[currentPage].timeZone
+        hourlyCell.update(with: hourlyForecast, timeZone: timeZone)
         return hourlyCell
     }
 }
